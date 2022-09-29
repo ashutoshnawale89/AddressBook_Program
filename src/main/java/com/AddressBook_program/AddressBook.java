@@ -25,9 +25,9 @@ public class AddressBook {
 				" "+address+" "+pincode+"  "+email);
 
 	}
-	public void changePhoneNumber(int change) {
+	public void changePhoneNumber(String change) {
 		Scanner sc=new Scanner(System.in);
-		if (change==1) {
+		if (change.equals(firstName)) {
 			System.out.println("Enter The New Number");
 			phoneNumber=sc.next();
 			System.out.println(firstName+" "+lastName+" "+phoneNumber+
@@ -51,8 +51,8 @@ public class AddressBook {
 		String email=sc.next();
 		AddressBook obj=new AddressBook(firstName,lastName,phoneNumber,address,pincode,email);
 		obj.newAddressBookDataEnter();
-		System.out.println("If Change The Phone Number Enter 1");
-		int value=sc.nextInt();
+		System.out.println("If Change The Phone Number Enter Name");
+		String value=sc.next();
 		obj.changePhoneNumber(value);
 	}
 
