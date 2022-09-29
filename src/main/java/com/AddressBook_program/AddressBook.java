@@ -25,6 +25,15 @@ public class AddressBook {
 				" "+address+" "+pincode+"  "+email);
 
 	}
+	public void changePhoneNumber(int change) {
+		Scanner sc=new Scanner(System.in);
+		if (change==1) {
+			System.out.println("Enter The New Number");
+			phoneNumber=sc.next();
+			System.out.println(firstName+" "+lastName+" "+phoneNumber+
+					" "+address+" "+pincode+"  "+email);
+		}
+	}
 
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
@@ -40,8 +49,11 @@ public class AddressBook {
 		int pincode=sc.nextInt();
 		System.out.println(" Email Enter");
 		String email=sc.next();
-		AddressBook addrsBook=new AddressBook(firstName,lastName,phoneNumber,address,pincode,email);
-	addrsBook.newAddressBookDataEnter();
+		AddressBook obj=new AddressBook(firstName,lastName,phoneNumber,address,pincode,email);
+		obj.newAddressBookDataEnter();
+		System.out.println("If Change The Phone Number Enter 1");
+		int value=sc.nextInt();
+		obj.changePhoneNumber(value);
 	}
 
-	}
+}
