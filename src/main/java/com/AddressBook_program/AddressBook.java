@@ -34,6 +34,19 @@ public class AddressBook {
 					" "+address+" "+pincode+"  "+email);
 		}
 	}
+	public void Deletinfunc(String name) {
+		if (firstName.equals(name)) {
+		firstName=null;
+		lastName=null;
+		phoneNumber=null;
+		address=null;
+		pincode=0;
+		email=null;
+	System.out.println("The Data is Deleted");
+	}
+		else { System.out.println("The Data is Not Deleted");
+		}
+		}
 
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
@@ -51,9 +64,12 @@ public class AddressBook {
 		String email=sc.next();
 		AddressBook obj=new AddressBook(firstName,lastName,phoneNumber,address,pincode,email);
 		obj.newAddressBookDataEnter();
-		System.out.println("If Change The Phone Number Enter Name");
+		System.out.println("If Change The Phone Number Enter Name & Dont change Enter 0");
 		String value=sc.next();
 		obj.changePhoneNumber(value);
+		System.out.println("If Delete  The  Entery Write The Name");
+		value=sc.next();
+		obj.Deletinfunc(value);
 	}
 
 }
