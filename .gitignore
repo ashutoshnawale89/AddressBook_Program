@@ -3,7 +3,7 @@
 .project
 .settings/
 bin/
-porm.xml/
+pom.xml/
 target/
 src/main/resources/
 src/main/webapp/
