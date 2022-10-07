@@ -1,12 +1,13 @@
 package com.AddressBook_program;
 
-import java.util.ArrayList;
+
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 public class AddressBook {
-	
+	static HashMap<Integer,String> map = new HashMap<Integer, String>();
 	static Scanner sc=new Scanner(System.in);
-	static ArrayList<String> store=new ArrayList<String>();
 	public static String newAddressBookDataEnter() {
 		System.out.println("First Name Enter");
 		String firstName=sc.next();
@@ -20,7 +21,7 @@ public class AddressBook {
 		String pincode=sc.next();
 		System.out.println(" Email Enter");
 		String email=sc.next();
-		
+
 		System.out.println(firstName+" "+lastName+" "+phoneNumber+
 				" "+address+" "+pincode+"  "+email);
 		return firstName+" "+lastName+" "+phoneNumber+
@@ -33,17 +34,22 @@ public class AddressBook {
 		System.out.println("If address book Show Then Enter The  2");
 		int condition=sc.nextInt();
 		switch(condition) {
+		
 		case(0): System.out.println("Your address Book Is  Save & Closed");
-		break;
-		case(1):  store.add(newAddressBookDataEnter());
+		         break;
+		case(1):  System.out.println("Enter The Unique Value of Person");
+		          int unique=sc.nextInt();
+		          map.put(unique, newAddressBookDataEnter());
+		          System.out.println(map.get(unique));
 		          storeData();
 		          break;
-		case(2):      System.out.println(store.toString());   
-		          break;
-	    default: System.out.println("Enter Correct Input");
+		case(2): Set<Integer> keys = map.keySet();
+		         for (Object key : keys)
+			     System.out.println("Keys :  "+key+" value:  "+map.get(key));      
+		         break;
+		default: System.out.println("Enter Correct Input");
 		}
 	}
-	
 	public static void main(String[] args) {		
 		AddressBook.storeData();
 	}
