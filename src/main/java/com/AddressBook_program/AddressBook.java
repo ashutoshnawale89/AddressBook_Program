@@ -1,55 +1,13 @@
 package com.AddressBook_program;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-	public String firstName;
-	public String lastName;
-	public String phoneNumber;
-	public String address;
-	public int pincode;
-	public String email;
-
-	public AddressBook(String firstName, String lastName,String phoneNumber, String address
-			, int pincode, String email) {
-
-		this.firstName=firstName;
-		this.lastName=lastName;
-		this.phoneNumber=phoneNumber;
-		this.address=address;
-		this.pincode=pincode;
-		this.email=email;
-	}
-	public void newAddressBookDataEnter() {
-		System.out.println(firstName+" "+lastName+" "+phoneNumber+
-				" "+address+" "+pincode+"  "+email);
-
-	}
-	public void changePhoneNumber(String change) {
-		Scanner sc=new Scanner(System.in);
-		if (change.equals(firstName)) {
-			System.out.println("Enter The New Number");
-			phoneNumber=sc.next();
-			System.out.println(firstName+" "+lastName+" "+phoneNumber+
-					" "+address+" "+pincode+"  "+email);
-		}
-	}
-	public void Deletinfunc(String name) {
-		if (firstName.equals(name)) {
-		firstName=null;
-		lastName=null;
-		phoneNumber=null;
-		address=null;
-		pincode=0;
-		email=null;
-	System.out.println("The Data is Deleted");
-	}
-		else { System.out.println("The Data is Not Deleted");
-		}
-		}
-
-	public static void main(String[] args) {
-		Scanner sc=new Scanner(System.in);
+	
+	static Scanner sc=new Scanner(System.in);
+	static ArrayList<String> store=new ArrayList<String>();
+	public static String newAddressBookDataEnter() {
 		System.out.println("First Name Enter");
 		String firstName=sc.next();
 		System.out.println("Last Name Enter");
@@ -59,17 +17,34 @@ public class AddressBook {
 		System.out.println(" Address Enter");
 		String address=sc.next();
 		System.out.println(" PinCode Enter");
-		int pincode=sc.nextInt();
+		String pincode=sc.next();
 		System.out.println(" Email Enter");
 		String email=sc.next();
-		AddressBook obj=new AddressBook(firstName,lastName,phoneNumber,address,pincode,email);
-		obj.newAddressBookDataEnter();
-		System.out.println("If Change The Phone Number Enter Name & Dont change Enter 0");
-		String value=sc.next();
-		obj.changePhoneNumber(value);
-		System.out.println("If Delete  The  Entery Write The Name");
-		value=sc.next();
-		obj.Deletinfunc(value);
-	}
+		
+		System.out.println(firstName+" "+lastName+" "+phoneNumber+
+				" "+address+" "+pincode+"  "+email);
+		return firstName+" "+lastName+" "+phoneNumber+
+				" "+address+" "+pincode+"  "+email;
 
+	}
+	public static void storeData() {
+		System.out.println("If address book add more Then Enter The  1");
+		System.out.println("If address book add Nothing Then Enter The  0");
+		System.out.println("If address book Show Then Enter The  2");
+		int condition=sc.nextInt();
+		switch(condition) {
+		case(0): System.out.println("Your address Book Is  Save & Closed");
+		break;
+		case(1):  store.add(newAddressBookDataEnter());
+		          storeData();
+		          break;
+		case(2):      System.out.println(store.toString());   
+		          break;
+	    default: System.out.println("Enter Correct Input");
+		}
+	}
+	
+	public static void main(String[] args) {		
+		AddressBook.storeData();
+	}
 }
