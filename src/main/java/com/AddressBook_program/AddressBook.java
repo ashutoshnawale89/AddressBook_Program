@@ -91,6 +91,7 @@ public class AddressBook {
 				}
 			}
 		}
+		System.out.println(count+"  number of person stay in the "+city);
 		// count will null it means No One Available in City
 		if (count==0)
 			System.out.println("No Deails available");
