@@ -96,10 +96,17 @@ public class AddressBook {
 		if (count==0)
 			System.out.println("No Deails available");
 	}
+	// Sorted By Person name using Stream Api Function 
+	public static void sortAphabeticallyByPersonName() {
+		map.keySet().stream().sorted((a1, a2) -> a2.compareTo(a1)).forEach(x -> System.out.println(x));
+  
+	}
 	
-	public static void main(String[] args) {		
+	public static void main(String[] args) {	
+		
 		AddressBook.storeData();
-		System.out.println("Search Result to show multiple person in the city or state");
-		searchPersonInCity("nagpur");
+	//	System.out.println("Search Result to show multiple person in the city or state");
+	//	searchPersonInCity("nagpur");
+		sortAphabeticallyByPersonName();
 	}
 }
