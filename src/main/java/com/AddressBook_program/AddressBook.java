@@ -2,6 +2,7 @@ package com.AddressBook_program;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
@@ -24,10 +25,10 @@ public class AddressBook {
 
 	// hashmap value pair is used to store the other details of person
 	public static String newAddressBookDataEnter() {
-		System.out.println("PhoneNumber Enter");
-		String phoneNumber=sc.next();
 		System.out.println(" Address Enter");
 		String address=sc.next();
+		System.out.println("PhoneNumber Enter");
+		String phoneNumber=sc.next();
 		System.out.println(" PinCode Enter");
 		String pincode=sc.next();
 		System.out.println(" Email Enter");
@@ -70,25 +71,31 @@ public class AddressBook {
 		default: System.out.println("Enter Correct Input");
 		}
 	}
-	
+
 	public static void searchPersonInCity(String city) {
+		//  initiating the value and "count" value use for the NO PERSON PRESENT IN CITY
 		String str;
 		String[] arrOfStr;
 		int count=0;
+		//  for loop for HASHMAP
 		Set<String> keys2 = map.keySet();
 		for (Object key : keys2) {
 			str=map.get(key);
-		    arrOfStr = str.split(" ", 4);
-		for (String temp : arrOfStr) {
-			//System.out.println(a);			
-			if(temp.equals(city)){
-			System.out.println("Keys :  "+key+" value:  "+str); 
+			//  Split The HashMAP Value Pair 
+			arrOfStr = str.split(" ", 4);
+			for (String temp : arrOfStr) {
+				// splittd Value will be compare to the City
+				if(temp.equals(city)){
+					System.out.println("Keys :  "+key+" value:  "+str); 
+					count++;
+				}
 			}
 		}
-		}
+		// count will null it means No One Available in City
 		if (count==0)
 			System.out.println("No Deails available");
 	}
+	
 	public static void main(String[] args) {		
 		AddressBook.storeData();
 		System.out.println("Search Result to show multiple person in the city or state");
