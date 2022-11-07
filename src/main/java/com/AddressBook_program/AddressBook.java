@@ -3,7 +3,14 @@ package com.AddressBook_program;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -33,7 +40,7 @@ public class AddressBook {
 		String pincode=sc.next();
 		System.out.println(" Email Enter");
 		String email=sc.next();
-		return phoneNumber+" "+address+" "+pincode+" "+email;
+		return address+" "+phoneNumber+" "+pincode+" "+email;
 
 	}
 
@@ -71,42 +78,42 @@ public class AddressBook {
 		default: System.out.println("Enter Correct Input");
 		}
 	}
+	
 
-	public static void searchPersonInCity(String city) {
-		//  initiating the value and "count" value use for the NO PERSON PRESENT IN CITY
-		String str;
-		String[] arrOfStr;
-		int count=0;
-		//  for loop for HASHMAP
-		Set<String> keys2 = map.keySet();
-		for (Object key : keys2) {
-			str=map.get(key);
-			//  Split The HashMAP Value Pair 
-			arrOfStr = str.split(" ", 4);
-			for (String temp : arrOfStr) {
-				// splittd Value will be compare to the City
-				if(temp.equals(city)){
-					System.out.println("Keys :  "+key+" value:  "+str); 
-					count++;
-				}
-			}
-		}
-		System.out.println(count+"  number of person stay in the "+city);
-		// count will null it means No One Available in City
-		if (count==0)
-			System.out.println("No Deails available");
-	}
-	// Sorted By Person name using Stream Api Function 
-	public static void sortAphabeticallyByPersonName() {
-		map.keySet().stream().sorted((a1, a2) -> a2.compareTo(a1)).forEach(x -> System.out.println(x));
-  
-	}
+
+    // Method to sort hashmap by values
+    public static HashMap<String, String> sortByValue(HashMap<String, String> hm)
+    {
+        // Create a list from elements of HashMap
+        List<Map.Entry<String, String> > list =
+               new LinkedList<Map.Entry<String, String> >(hm.entrySet());
+ 
+        // Sort the list
+        Collections.sort(list, new Comparator<Map.Entry<String, String> >() {
+            public int compare(Map.Entry<String, String> o1,
+                               Map.Entry<String, String> o2)
+            {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+         
+        // put data from sorted list to hashmap
+        HashMap<String, String> temp = new LinkedHashMap<String, String>();
+        for (Map.Entry<String, String> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
+    }
+ 
 	
 	public static void main(String[] args) {	
 		
 		AddressBook.storeData();
-	//	System.out.println("Search Result to show multiple person in the city or state");
-	//	searchPersonInCity("nagpur");
-		sortAphabeticallyByPersonName();
+		Map<String, String> sortMap =sortByValue(map);
+		 // print the sorted hashmap
+        for (Map.Entry<String, String> map1 : sortMap.entrySet()) {
+            System.out.println("Key = " + map1.getKey() +
+                          ", Value = " + map1.getValue());
+        }
 	}
 }
