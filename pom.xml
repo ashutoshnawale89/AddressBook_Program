@@ -101,6 +101,22 @@
 			<scope>test</scope>
 		</dependency>
 		-->
+		
+		<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+<dependency>
+    <groupId>com.opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+    <version>5.4</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+<dependency>
+    <groupId>com.opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+    <version>5.4</version>
+</dependency>
+
+		
 	</dependencies>
 	<build>
 		<resources>

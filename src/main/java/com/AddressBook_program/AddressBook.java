@@ -17,53 +17,53 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import javax.swing.filechooser.FileFilter;
+import com.opencsv.CSVWriter;
 
 
 public class AddressBook {
 
 	public void writeAddressBook() throws IOException {
-		ArrayList<String> addrsBook=new ArrayList<String>();
-		addrsBook.add("Nikita");	
-		addrsBook.add("Patil");
-		addrsBook.add("7755889944");
-		addrsBook.add("Aurangabad");
-		addrsBook.add("Maharastra");
-		addrsBook.add("445566");
-		addrsBook.add("nikita@gmail.com");
-		Files.write(Paths.get("C:\\Users\\ASHUTOSH NAWALE\\eclipse-workspace\\AddressBook_Class_199\\AddressBook.txt"),addrsBook, StandardOpenOption.APPEND);
+		
+		  FileWriter outputfile = new FileWriter("C:\\Users\\ASHUTOSH NAWALE\\eclipse-workspace\\AddressBook_Class_199\\written.csv");
+	       
+	         // create CSVWriter object filewriter object as parameter
+	         CSVWriter writer = new CSVWriter(outputfile);
+	       
+	         // create a List which contains String array
+	         ArrayList<String[]> addrsBook=new ArrayList<String[]>();
+	 		addrsBook.add( new String[] {"FirstName","LastName","City","State","Zip","Email"});
+	 		addrsBook.add( new String[] {"RamKrishna","Charan","Banglore","Chennai","441122","ramcharan@yahoo.com"});
+	 		addrsBook.add( new String[] {"Bunty","Shelke","Nagpur","Maharashtra","441100","shelke@gmail.com"});
+	 		addrsBook.add( new String[] {"Nikita","Patil","aurangabad","Maarashtra","445511","nikita@reddif.in"});
+	 		writer.writeAll(addrsBook);
+	         
+	         writer.writeAll(addrsBook);
+	       
+//	         // closing writer connection
+	     writer.close();
+
 	}
 	public void readAddressBook() throws IOException, Exception {
 	
-		List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\ASHUTOSH NAWALE\\eclipse-workspace\\AddressBook_Class_199\\AddressBook.txt"));
+		  FileReader filereader = new FileReader("C:\\Users\\ASHUTOSH NAWALE\\eclipse-workspace\\AddressBook_Class_199\\written.csv");
 
-		// Printing Lines Read
-		for (String line : lines) {
-			System.out.println(line);
-		}		
+	        // create csvReader object and skip first Line
+	        CSVReader csvReader = new CSVReaderBuilder(filereader).withSkipLines(1).build();
+	        List<String[]> allData = csvReader.readAll();
+
+	        // print Data
+	        for (String[] row : allData) {
+	            for (String cell : row) {
+	                System.out.print(cell + "\t");
+	            }
+	            System.out.println();
+	        }
+
 	}
 	
-//	FileReader fileReader =null;
-//	try {
-//		fileReader=new FileReader(infile);
-//		int ch;
-//		while((ch=fileReader.read())!= -1) {
-//			System.out.print((char)ch);
-//		}
-//	}
-//	catch (FileNotFoundException fnfe)
-//    {
-//        System.out.println("NO Such File Exists");
-//    }
-//    catch (IOException except)
-//    {
-//        System.out.println("IOException occurred");
-//    }
-//	  finally {
-//		  fileReader.close(); 
-//	}
-//	}
-//		
 	public static void main(String[] args) throws Exception {	
 		AddressBook obj=new AddressBook();
 		obj.writeAddressBook();
